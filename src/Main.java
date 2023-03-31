@@ -3,7 +3,6 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
         //logo
@@ -18,7 +17,7 @@ public class Main {
         for (String logo : logos) {
             System.out.println(logo);
         }
-        System.out.println();
+        System.out.print("请输入ip地址：");
         //end
         System.out.println();
         Scanner scanner = new Scanner(System.in);
