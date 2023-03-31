@@ -1,12 +1,17 @@
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int port = 65535;//最大端口
+        //int[] open = new int[65535];
+        //int[] closed = new int[65535];
+        ArrayList<Integer> open = new ArrayList<>();
+        ArrayList<Integer> closed = new ArrayList<>();
         String server = scanner.next();
         //int[] pos ={80,22,8080,2017,1080};
         for (int i=0; i<=port; i++){
@@ -17,11 +22,14 @@ public class Main {
             try{
                 Socket socket = new Socket();
                 socket.connect(new InetSocketAddress(server,i),1000);
-                System.out.println("端口"+i+"开放");
+                //System.out.println("端口"+i+"开放");
+                open.add(i);
                 socket.close();
             } catch (IOException e) {
-                System.out.println("端口"+i+"关闭");
+                //System.out.println("端口"+i+"关闭");
+                closed.add(i);
             }
         }
+        System.out.println(open);
     }
 }
