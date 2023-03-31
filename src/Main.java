@@ -6,22 +6,21 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        int port = 65535;//最大端口
         String server = scanner.next();
-        int[] pos = new int[65535];
-        for (int i = 0; i<= 65534; i++) {
-            pos[i] = i + 1; //第一次循环会出现 pos[0]=0+1
-        }
-
         //int[] pos ={80,22,8080,2017,1080};
-        for (int po : pos){
+        for (int i=0; i<=port; i++){
+            //进度条
+            double percent = ((double) i / port) * 100;
+            System.out.printf("[%s%s] %.2f%%%n","#".repeat(i*100/port)," ".repeat(100-i*100/port),percent);
+            //end
             try{
                 Socket socket = new Socket();
-                socket.connect(new InetSocketAddress(server,po));
-                System.out.println("端口"+po+"开放");
+                socket.connect(new InetSocketAddress(server,i),1000);
+                System.out.println("端口"+i+"开放");
                 socket.close();
             } catch (IOException e) {
-                System.out.println("端口"+po+"关闭");
-
+                System.out.println("端口"+i+"关闭");
             }
         }
     }
