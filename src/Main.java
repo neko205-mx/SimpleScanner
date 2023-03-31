@@ -1,11 +1,26 @@
+import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        //logo
+        String[] logos = {
+                "  ____  _                 _      ____                                 ",
+                "/ ___|(_)_ __ ___  _ __ | | ___/ ___|  ___ __ _ _ __  _ __   ___ _ __ ",
+                " ___  | | '_ ` _  | '_  | |/ _  ___   / __/ _` | '_  | '_   / _   '__|",
+                " ___) | | | | | | | |_) | |  __/___) | (_| (_| | | | | | | |  __/ |   ",
+                "|____/|_|_| |_| |_| .__/|_| ___|____/  ___ __,_|_| |_|_| |_| ___|_|   ",
+                "                  |_|                                                 ",
+        };
+        for (String logo : logos) {
+            System.out.println(logo);
+        }
+        System.out.println();
+        //end
+        System.out.println();
         Scanner scanner = new Scanner(System.in);
         int port = 65535;//最大端口
         //int[] open = new int[65535];
@@ -30,6 +45,6 @@ public class Main {
                 closed.add(i);
             }
         }
-        System.out.println(open);
+        System.out.println("扫描到开放端口"+open);
     }
 }
