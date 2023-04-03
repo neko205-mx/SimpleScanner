@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         //logo
@@ -15,7 +16,14 @@ public class Main {
         }
         //end
         Scan scan= new Scan();
-        System.out.println(scan.Getopen());
-
+        Scanner  scanner = new Scanner(System.in);
+        System.out.print("输入0为暴力扫描 输入1为top50端口扫描：");
+        int a = scanner.nextInt();
+        if (a == 0){
+            System.out.println("存在开放端口"+scan.GetOpenAll());
+            }
+        if (a == 1) {
+            System.out.println("存在开放端口"+scan.GetOpenTop50());
+        }
     }
 }
