@@ -20,9 +20,10 @@ public class Main {
         Scanner  scanner = new Scanner(System.in);
         System.out.print("输入0为暴力扫描 输入1为top50端口扫描：");
         int a = scanner.nextInt();
-        ArrayList<Integer> open = new ArrayList<>();
+        ArrayList<Integer> open;
         if (a == 0){
-            open=scan.GetOpenAll();
+            scan.GetOpenAll();
+            open=scan.ScanAccept();
             if (open.isEmpty()){
                 System.out.println("不存在开放端口");
             }else{
@@ -30,7 +31,8 @@ public class Main {
             }
         }
         if (a == 1) {
-            open=scan.GetOpenTop50();
+            scan.GetOpenTop50();
+            open=scan.ScanAccept();
             if (open.isEmpty()){
                 System.out.println("不存在开放端口");
             }else{
