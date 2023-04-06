@@ -10,6 +10,7 @@ public class Scan {
     public int[] OpenPort;
     public ArrayList<Integer> Open = new ArrayList<>();
     public ArrayList<Integer> Closed = new ArrayList<>();
+
     public void GetOpenAll(){
         //Main main = new Main();
         System.out.print("请输入ip地址：");
@@ -22,6 +23,7 @@ public class Scan {
         }
         OpenPort = port;
     }
+
     public void GetOpenTop50(){
         //Main main = new Main();
         System.out.print("请输入ip地址：");
