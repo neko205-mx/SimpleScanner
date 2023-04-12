@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Main {
     public static ArrayList<Integer> Open = new ArrayList<>();
-    public static ArrayList<String> Data = new ArrayList<>();
+    //public static ArrayList<String> Data = new ArrayList<>();
     public static void main(String[] args) {
         //logo
         String[] logos = {
@@ -26,16 +26,13 @@ public class Main {
 
         if (a == 0){
             scan.GetOpenAll();
-            Open=scan.ScanAccept();
+            Open=scan.ScanAccept(); //从扫描器获取开放端口
             if (Open.isEmpty()){
                 System.out.println("不存在开放端口");
             }else{
                 System.out.println("存在开放端口"+Open);
                 System.out.println("正在获取端口信息");
-                Analyser();
-                for (String datas : Data) {
-                    System.out.println(datas);
-                }
+                Analyser();//执行端口信息比对
             }
         }
         if (a == 1) {
@@ -47,19 +44,17 @@ public class Main {
                 System.out.println("存在开放端口"+Open);
                 System.out.println("正在获取端口信息");
                 Analyser();
-                for (String datas : Data) {
-                    System.out.println(datas);
-                }
             }
         }
     }
     public static void Analyser(){
-        for (int elemetn : Open){
-            if (elemetn == 3389){
-                Data.add("Remote Desktop Protocol  3389");
-            }
-            if (elemetn == 1080){
-                Data.add("Proxy Server 1080");
+        OpenData.PortData();
+        for (String datas : OpenData.portData) {
+            if (datas==null){
+                datas="无数据";
+                System.out.println(datas);
+            }else{
+                System.out.println(datas);
             }
         }
     }
