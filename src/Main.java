@@ -50,12 +50,7 @@ public class Main {
     public static void Analyser(){
         OpenData.PortData();
         for (String datas : OpenData.portData) {
-            if (datas==null){
-                datas="无数据";
-                System.out.println(datas);
-            }else{
-                System.out.println(datas);
-            }
+            System.out.println(datas);
         }
     }
 }
