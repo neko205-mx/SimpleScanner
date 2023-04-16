@@ -6,12 +6,12 @@ import java.util.Scanner;
 
 public class Scan {
     //公用变量 用于接收传入参数并连接到扫描器
-    public  String OpenServer;
-    public int[] OpenPort;
-    public ArrayList<Integer> Open = new ArrayList<>();
-    public ArrayList<Integer> Closed = new ArrayList<>();
+    public static String OpenServer;
+    public static int[] OpenPort;
+    public static ArrayList<Integer> Open = new ArrayList<>();
+    public static ArrayList<Integer> Closed = new ArrayList<>();
 
-    public void GetOpenAll(){
+    public static void GetOpenAll(){
         //Main main = new Main();
         System.out.print("请输入ip地址：");
         Scanner scanner = new Scanner(System.in);
@@ -24,7 +24,7 @@ public class Scan {
         OpenPort = port;
     }
 
-    public void GetOpenTop50(){
+    public static void GetOpenTop50(){
         //Main main = new Main();
         System.out.print("请输入ip地址：");
         Scanner scanner = new Scanner(System.in);
@@ -34,7 +34,7 @@ public class Scan {
     }
 
     //扫描器
-    public ArrayList<Integer> ScanAccept(){
+    public static ArrayList<Integer> ScanAccept(){
         int sum = 0;
         for (int i : OpenPort){
             sum++;
