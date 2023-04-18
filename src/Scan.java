@@ -17,7 +17,7 @@ public class Scan {
         Scanner scanner = new Scanner(System.in);
         //String server = scanner.next();
         OpenServer = scanner.next();
-        int[] port = new  int[65535];
+        int[] port = new int[65535];
         for (int i=0; i<port.length; i++){
             port[i]=i;
         }

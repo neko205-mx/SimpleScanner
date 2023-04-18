@@ -1,11 +1,10 @@
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static ArrayList<Integer> Open = new ArrayList<>();
     //public static ArrayList<String> Data = new ArrayList<>();
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) {
         //logo
         String[] logos = {
                 "  ____  _                 _      ____                                 ",
@@ -32,7 +31,9 @@ public class Main {
             }else{
                 System.out.println("存在开放端口"+Open);
                 System.out.println("检查是否为web服务器");
-                Accinfo.Protf();
+                Accinfo.ProtWebServer();
+                Accinfo.PortWebCode();
+                SSHinfo.PortSSHinfo();
                 System.out.println("比对可能端口信息");
                 Analyser();//执行端口信息比对
             }
@@ -44,8 +45,9 @@ public class Main {
                 System.out.println("不存在开放端口");
             }else{
                 System.out.println("存在开放端口"+Open);
-                System.out.println("检查是否为web服务器");
-                Accinfo.Protf();
+                System.out.println("尝试获取webserver信息");
+                Accinfo.ProtWebServer();
+                Accinfo.PortWebCode();
                 System.out.println("比对可能端口信息");
                 Analyser();
             }
