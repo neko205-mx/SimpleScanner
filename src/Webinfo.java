@@ -1,12 +1,16 @@
+import javax.sound.sampled.Port;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 
 
-
-public class Accinfo {
+public class Webinfo {
+    public static ArrayList<Integer> WebProt = new ArrayList<>();
+    public static ArrayList<String> WebCode = new ArrayList<>();
+    public static ArrayList<String> WebServer = new ArrayList<>();
     public static void ProtWebServer() {
         for (Integer Prot : Scan.Open) {
             try {
@@ -16,6 +20,9 @@ public class Accinfo {
                 connection.setReadTimeout(1000); // 设置读取超时时间为1秒
                 String server = connection.getHeaderField("Server");//尝试读取头
                 //int code = connectionCode.getResponseCode();
+                if (server!=null){
+                    WebServer.add("端口："+Prot+" "+server);
+                }
                 if (server==null){
                     server="NO_WEBSERVER_INFO";
                 }
@@ -36,6 +43,11 @@ public class Accinfo {
                 connectionCode.setReadTimeout(5000);//超时判定
                 int code = connectionCode.getResponseCode();
                 System.out.println("Code: " + Prot + " " + code);
+                if (code == 200){
+                    WebCode.add("端口："+Prot+" Code "+code);
+                } else if (code == 404) {
+                    WebCode.add("端口："+Prot+" Code "+code);
+                }
             }catch (SocketTimeoutException e){
                 System.out.println("Code: "+ Prot +" Code扫描连接超时");
             }catch (IOException e){

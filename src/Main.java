@@ -1,10 +1,13 @@
+import javax.sound.sampled.Port;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static ArrayList<Integer> Open = new ArrayList<>();
+    public static boolean SSH_verdict = false;
     //public static ArrayList<String> Data = new ArrayList<>();
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, InterruptedException {
         //logo
         String[] logos = {
                 "  ____  _                 _      ____                                 ",
@@ -31,11 +34,19 @@ public class Main {
             }else{
                 System.out.println("存在开放端口"+Open);
                 System.out.println("检查是否为web服务器");
-                Accinfo.ProtWebServer();
-                Accinfo.PortWebCode();
+                Webinfo.ProtWebServer();
+                Webinfo.PortWebCode();
+                System.out.println("尝试获取SSH端口信息");
                 SSHinfo.PortSSHinfo();
+                if (SSH_verdict){
+                    SSHinfo.PortSSHkey();
+                    SSHinfo.PortSSHkeyMDA_RSA();
+                    SSHinfo.PortSSHkeyMDA_ECDSA();
+                    SSHinfo.PortSSHkeyMDA_ED25519();
+                }
                 System.out.println("比对可能端口信息");
                 Analyser();//执行端口信息比对
+                SumOutput();
             }
         }
         if (a == 1) {
@@ -46,10 +57,19 @@ public class Main {
             }else{
                 System.out.println("存在开放端口"+Open);
                 System.out.println("尝试获取webserver信息");
-                Accinfo.ProtWebServer();
-                Accinfo.PortWebCode();
+                Webinfo.ProtWebServer();
+                Webinfo.PortWebCode();
+                System.out.println("尝试获取SSH端口信息");
+                SSHinfo.PortSSHinfo();
+                if (SSH_verdict){
+                    SSHinfo.PortSSHkey();
+                    SSHinfo.PortSSHkeyMDA_RSA();
+                    SSHinfo.PortSSHkeyMDA_ECDSA();
+                    SSHinfo.PortSSHkeyMDA_ED25519();
+                }
                 System.out.println("比对可能端口信息");
                 Analyser();
+                SumOutput();
             }
         }
     }
@@ -57,6 +77,26 @@ public class Main {
         OpenData.PortData();
         for (String datas : OpenData.portData) {
             System.out.println(datas);
+        }
+    }
+    public static void SumOutput(){
+        System.out.println("-------------------------END OUTPUT---------------------------");
+        System.out.println("WebServer：");
+        for(String server : Webinfo.WebServer){
+            System.out.println(server);
+        }
+        System.out.println("WebCode：");
+        for (String code : Webinfo.WebCode){
+            System.out.println(code);
+        }
+        System.out.println("SSH端口："+SSHinfo.SSH_Open);
+        System.out.println("Public_Key：");
+        for (String key : SSHinfo.SSHkeyInfo) {
+            System.out.println(key);
+        }
+        System.out.println("Public_Key_MD5：");
+        for (String key_MD5 : SSHinfo.MD5){
+            System.out.println(key_MD5);
         }
     }
 }
